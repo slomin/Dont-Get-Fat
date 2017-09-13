@@ -17,6 +17,13 @@ class MainActivity : AppCompatActivity() {
     private val mMiddleFragment = MiddleFragment()
     private val mRightFragment = RightFragment()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        addFragment(mLeftFragment, R.id.fragmentContainer)
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_left_fragment -> {
@@ -34,13 +41,5 @@ class MainActivity : AppCompatActivity() {
         }
         false
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        addFragment(mLeftFragment, R.id.fragmentContainer)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-    }
-
 
 }
