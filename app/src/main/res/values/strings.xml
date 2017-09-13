@@ -3,7 +3,4 @@
     <string name="title_left_fragment">Calories</string>
     <string name="title_middle_fragment">Weight</string>
     <string name="title_right_fragment">History</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Left fragment</string>
 </resources>
