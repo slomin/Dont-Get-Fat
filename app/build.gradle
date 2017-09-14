@@ -38,7 +38,10 @@ dependencies {
     compile "org.jetbrains.anko:anko-commons:$anko_version"
 
     // Timber logging
-    compile "com.jakewharton.timber:timber:$timberVersion"
+    compile "com.jakewharton.timber:timber:$timber_version"
+
+    // Custom number picker
+    compile "com.code-troopers.betterpickers:library:$better_pickers_version"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"

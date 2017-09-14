@@ -6,7 +6,11 @@ buildscript {
     ext.arch_version = '1.0.0-alpha9'
     ext.support_lib_version = '26.0.2'
     ext.constraint_layout_version = '1.0.2'
-    ext.timberVersion = '4.5.1'
+
+    // External libs
+    ext.timber_version = '4.5.1'
+    ext.better_pickers_version = '3.1.0'
+
     repositories {
         google()
         jcenter()
