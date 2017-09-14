@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.kotlinblog.dontgetfat.R
-import kotlinx.android.synthetic.main.fragment_calories.*
 
 class CaloriesFragment : Fragment() {
 
@@ -23,8 +21,8 @@ class CaloriesFragment : Fragment() {
 
         val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
 
-        btnChange.setOnClickListener { viewModel.change() }
-        btnLog.setOnClickListener { viewModel.log() }
+//        btnChange.setOnClickListener { viewModel.change() }
+//        btnLog.setOnClickListener { viewModel.log() }
     }
 
 

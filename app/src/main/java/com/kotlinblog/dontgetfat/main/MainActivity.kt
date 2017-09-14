@@ -6,8 +6,8 @@ import com.kotlinblog.dontgetfat.R
 import com.kotlinblog.dontgetfat.extensions.addFragment
 import com.kotlinblog.dontgetfat.extensions.replaceFragment
 import com.kotlinblog.dontgetfat.main.calories.CaloriesFragment
-import com.kotlinblog.dontgetfat.main.weight.WeightFragment
 import com.kotlinblog.dontgetfat.main.history.HistoryFragment
+import com.kotlinblog.dontgetfat.main.weight.WeightFragment
 import com.kotlinblog.dontgetfat.temp.AppCompatLifecycleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,7 +21,8 @@ class MainActivity : AppCompatLifecycleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         addFragment(mLeftFragment, R.id.fragmentContainer)
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        setSupportActionBar(toolbar)
+        bottomNavBar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
