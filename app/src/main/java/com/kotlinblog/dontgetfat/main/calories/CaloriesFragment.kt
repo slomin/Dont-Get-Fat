@@ -1,4 +1,4 @@
-package com.kotlinblog.dontgetfat.main.left
+package com.kotlinblog.dontgetfat.main.calories
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,20 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.kotlinblog.dontgetfat.R
-import kotlinx.android.synthetic.main.fragment_left.*
+import kotlinx.android.synthetic.main.fragment_calories.*
 
-class LeftFragment : Fragment() {
+class CaloriesFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_left, container, false)
+        return inflater!!.inflate(R.layout.fragment_calories, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(activity).get(LeftViewModel::class.java)
+        val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
 
         btnChange.setOnClickListener { viewModel.change() }
         btnLog.setOnClickListener { viewModel.log() }

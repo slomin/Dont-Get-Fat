@@ -5,17 +5,17 @@ import android.support.design.widget.BottomNavigationView
 import com.kotlinblog.dontgetfat.R
 import com.kotlinblog.dontgetfat.extensions.addFragment
 import com.kotlinblog.dontgetfat.extensions.replaceFragment
-import com.kotlinblog.dontgetfat.main.left.LeftFragment
-import com.kotlinblog.dontgetfat.main.middle.MiddleFragment
-import com.kotlinblog.dontgetfat.main.right.RightFragment
+import com.kotlinblog.dontgetfat.main.calories.CaloriesFragment
+import com.kotlinblog.dontgetfat.main.weight.WeightFragment
+import com.kotlinblog.dontgetfat.main.history.HistoryFragment
 import com.kotlinblog.dontgetfat.temp.AppCompatLifecycleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatLifecycleActivity() {
 
-    private val mLeftFragment = LeftFragment()
-    private val mMiddleFragment = MiddleFragment()
-    private val mRightFragment = RightFragment()
+    private val mLeftFragment = CaloriesFragment()
+    private val mMiddleFragment = WeightFragment()
+    private val mRightFragment = HistoryFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

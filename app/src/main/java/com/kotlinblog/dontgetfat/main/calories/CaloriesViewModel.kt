@@ -1,9 +1,9 @@
-package com.kotlinblog.dontgetfat.main.left
+package com.kotlinblog.dontgetfat.main.calories
 
 import android.arch.lifecycle.ViewModel
 import timber.log.Timber
 
-class LeftViewModel : ViewModel() {
+class CaloriesViewModel : ViewModel() {
 
     private var testValue: String = "testValue"
 
