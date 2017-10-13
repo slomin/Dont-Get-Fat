@@ -1,7 +1,6 @@
-package com.kotlinblog.dontgetfat.application
+package com.kotlinblog.dontgetfat
 
 import android.app.Application
-import com.kotlinblog.dontgetfat.BuildConfig
 import timber.log.Timber
 
 class App : Application() {

@@ -1,17 +1,17 @@
-package com.kotlinblog.dontgetfat.main
+package com.kotlinblog.dontgetfat.view
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v7.app.AppCompatActivity
 import com.kotlinblog.dontgetfat.R
 import com.kotlinblog.dontgetfat.extensions.addFragment
 import com.kotlinblog.dontgetfat.extensions.replaceFragment
-import com.kotlinblog.dontgetfat.main.calories.CaloriesFragment
-import com.kotlinblog.dontgetfat.main.history.HistoryFragment
-import com.kotlinblog.dontgetfat.main.weight.WeightFragment
-import com.kotlinblog.dontgetfat.temp.AppCompatLifecycleActivity
+import com.kotlinblog.dontgetfat.view.calories.CaloriesFragment
+import com.kotlinblog.dontgetfat.view.history.HistoryFragment
+import com.kotlinblog.dontgetfat.view.weight.WeightFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatLifecycleActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val mLeftFragment = CaloriesFragment()
     private val mMiddleFragment = WeightFragment()
