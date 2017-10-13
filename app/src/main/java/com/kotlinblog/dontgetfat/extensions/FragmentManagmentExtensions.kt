@@ -3,7 +3,7 @@ package com.kotlinblog.dontgetfat.extensions
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import com.kotlinblog.dontgetfat.temp.AppCompatLifecycleActivity
+import android.support.v7.app.AppCompatActivity
 
 /**
  * All the extensions helping fragment management
@@ -11,13 +11,11 @@ import com.kotlinblog.dontgetfat.temp.AppCompatLifecycleActivity
  * This particular elegant solution explained here:
  * https://medium.com/thoughts-overflow/how-to-add-a-fragment-in-kotlin-way-73203c5a450b
  */
-
-
-fun AppCompatLifecycleActivity.addFragment(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
     supportFragmentManager.inTransaction { add(frameId, fragment) }
 }
 
-fun AppCompatLifecycleActivity.replaceFragment(fragment: Fragment, frameId: Int) {
+fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
     supportFragmentManager.inTransaction { replace(frameId, fragment) }
 }
 

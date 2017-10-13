@@ -3,4 +3,5 @@
     <string name="title_left_fragment">Calories</string>
     <string name="title_middle_fragment">Weight</string>
     <string name="title_right_fragment">History</string>
+    <string name="kcal">kcal</string>
 </resources>
