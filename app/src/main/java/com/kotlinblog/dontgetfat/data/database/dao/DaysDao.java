@@ -7,6 +7,8 @@ import android.arch.persistence.room.Query;
 
 import com.kotlinblog.dontgetfat.data.model.Day;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 /**
@@ -25,4 +27,7 @@ public interface DaysDao {
 
     @Query("SELECT * FROM days WHERE id = :id")
     Day getDayById(long id);
+
+    @Query("SELECT * FROM days ORDER BY id DESC LIMIT 1;")
+    @Nullable Day getLastDay();
 }

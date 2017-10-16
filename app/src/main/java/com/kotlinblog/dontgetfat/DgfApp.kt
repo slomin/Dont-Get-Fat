@@ -6,7 +6,7 @@ import com.kotlinblog.dontgetfat.di.AppModule
 import com.kotlinblog.dontgetfat.di.DaggerAppComponent
 import timber.log.Timber
 
-class App : Application() {
+class DgfApp : Application() {
 
     companion object {
         private lateinit var mComponent: AppComponent

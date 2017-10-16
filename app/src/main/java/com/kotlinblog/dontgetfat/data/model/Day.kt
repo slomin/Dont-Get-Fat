@@ -12,9 +12,12 @@ import java.util.*
 data class Day(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        val id: Long,
+        var id: Long = 0,
 
         @ColumnInfo(name = "date")
-        val date: Date
+        val date: Date,
+
+        @ColumnInfo(name = "calories_allowed")
+        val caloriesAllowed: Int
 
 )

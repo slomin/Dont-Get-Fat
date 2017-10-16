@@ -6,15 +6,15 @@ import java.util.*
 /**
  * TODO: Add a class header comment!
  */
-@Entity(tableName = "meals",
-        indices = arrayOf(Index(value = "day_id")),
+@Entity(tableName = "measures",
+        indices = arrayOf(Index(value = "day_id", unique = true)), // only one measure per day
         foreignKeys = arrayOf(
                 ForeignKey(entity = Day::class,
                         parentColumns = arrayOf("id"),
                         childColumns = arrayOf("day_id"),
                         onUpdate = ForeignKey.CASCADE,
                         onDelete = ForeignKey.CASCADE)))
-data class Meal(
+data class Measure(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         val id: Long = 0,
@@ -25,7 +25,10 @@ data class Meal(
         @ColumnInfo(name = "date")
         val date: Date,
 
-        @ColumnInfo(name = "calories")
-        val calories: Int
+        @ColumnInfo(name = "weight") // Weight in grams
+        val weight: Int,
+
+        @ColumnInfo(name = "waist_size") //Waist size in cm
+        val waistSize: Int
 
 )

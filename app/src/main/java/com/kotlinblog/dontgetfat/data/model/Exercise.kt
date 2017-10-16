@@ -6,18 +6,18 @@ import java.util.*
 /**
  * TODO: Add a class header comment!
  */
-@Entity(tableName = "activities",
-        indices = arrayOf(Index(value = "day_id", unique = true)), //Todo not sure if unique
+@Entity(tableName = "exercises",
+        indices = arrayOf(Index(value = "day_id")),
         foreignKeys = arrayOf(
                 ForeignKey(entity = Day::class,
                         parentColumns = arrayOf("id"),
                         childColumns = arrayOf("day_id"),
                         onUpdate = ForeignKey.CASCADE,
                         onDelete = ForeignKey.CASCADE)))
-data class Activity(
+data class Exercise(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        val id: Long,
+        val id: Long = 0,
 
         @ColumnInfo(name = "day_id")
         val dayId: Long,

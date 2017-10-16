@@ -31,6 +31,7 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
 
 //        btnChange.setOnClickListener { viewModel.change() }
         btnLog.setOnClickListener { viewModel.log() }
+        btnTest.setOnClickListener { viewModel.test() }
 
         // Setting click listener for calories add dialog
         btnAddCalories.setOnClickListener {
