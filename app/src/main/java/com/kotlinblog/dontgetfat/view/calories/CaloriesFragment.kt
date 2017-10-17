@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.fragment_calories.*
 import timber.log.Timber
 import java.math.BigDecimal
 import java.math.BigInteger
-import java.util.*
-
 
 class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDialogHandlerV2 {
 
@@ -55,7 +53,7 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
             numberPickerBuilder.show()
         }
 
-        observeDb()
+        observeMeals()
 
     }
 
@@ -71,14 +69,25 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
         }
     }
 
-    private fun observeDb() {
-        val mealsObserver = Observer<List<Meal>> { varToObserve ->
-            Timber.d("Meals changed....")
+    private fun observeMeals() {
+        val mealsObserver = Observer<List<Meal>> { meals ->
+            if (meals != null) {
+                var totalCalories = 0
+                for (meal in meals) {
+                    totalCalories += meal.calories
+                }
+                setCurrentConsumption(totalCalories)
+            }
             mAdapter.notifyDataSetChanged()
         }
         val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
         viewModel.meals.observe(this, mealsObserver)
 
+    }
+
+    //TODO implement properly
+    private fun setCurrentConsumption(calories: Int) {
+        tvCaloriesConsumed.text = calories.toString() + "/${Constants.CALORIES_ALLOWED}"
     }
 
 }

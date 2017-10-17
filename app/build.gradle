@@ -15,10 +15,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            resValue "string", "app_name", "Don't Get Fat"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+        debug {
+            versionNameSuffix '-DEBUG'
+            applicationIdSuffix ".debug"
+            resValue "string", "app_name", "DGFDebug"
         }
     }
 }

@@ -19,7 +19,7 @@ class CaloriesAdapter(private var viewModel: CaloriesViewModel)
                 Timber.d("!: " + meal.calories.toString())
                 Timber.d("!: " + meal.id.toString())
                 textView1.text = meal.calories.toString()
-                textView2.text = meal.id.toString()
+                textView2.text = meal.date.toString()
             }
         }
 

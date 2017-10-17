@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Don\'t Get Fat</string>
+    <!--<string name="app_name">Don\'t Get Fat</string>-->
     <string name="title_left_fragment">Calories</string>
     <string name="title_middle_fragment">Weight</string>
     <string name="title_right_fragment">History</string>
