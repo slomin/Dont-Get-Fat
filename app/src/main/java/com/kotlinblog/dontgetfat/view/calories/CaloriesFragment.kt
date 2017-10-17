@@ -1,14 +1,18 @@
 package com.kotlinblog.dontgetfat.view.calories
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.codetroopers.betterpickers.numberpicker.NumberPickerDialogFragment
 import com.kotlinblog.dontgetfat.R
+import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.temp.Constants
 import kotlinx.android.synthetic.main.fragment_calories.*
 import timber.log.Timber
 import java.math.BigDecimal
@@ -17,6 +21,9 @@ import java.util.*
 
 
 class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDialogHandlerV2 {
+
+    private lateinit var mViewModel: CaloriesViewModel
+    private lateinit var mAdapter: CaloriesAdapter
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
@@ -27,24 +34,28 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
+        mViewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
+        mAdapter = CaloriesAdapter(mViewModel)
 
-//        btnChange.setOnClickListener { viewModel.change() }
-        btnLog.setOnClickListener { viewModel.log() }
-        btnTest.setOnClickListener { viewModel.test() }
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = mAdapter
+        }
 
         // Setting click listener for calories add dialog
         btnAddCalories.setOnClickListener {
-            val npb = NumberPickerBuilder()
+            val numberPickerBuilder = NumberPickerBuilder()
                     .setPlusMinusVisibility(View.GONE)
                     .setDecimalVisibility(View.GONE)
-                    .setMaxNumber(BigDecimal("2000"))
+                    .setMaxNumber(BigDecimal(Constants.CALORIES_ALLOWED.toString()))
                     .setTargetFragment(this)
                     .setFragmentManager(fragmentManager)
                     .setStyleResId(R.style.BetterPickersDialogFragment_Light)
                     .setLabelText(getString(R.string.kcal))
-            npb.show()
+            numberPickerBuilder.show()
         }
+
+        observeDb()
 
     }
 
@@ -55,9 +66,19 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
     override fun onDialogNumberSet(reference: Int, number: BigInteger?, decimal: Double, isNegative: Boolean, fullNumber: BigDecimal?) {
         Timber.d("value set: $number")
         val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
-        val currentTime = Date()
         if (number != null && number.toInt() != 0) {
-            viewModel.addCalories(currentTime, number.toInt())
+            viewModel.addCalories(number.toInt())
         }
     }
+
+    private fun observeDb() {
+        val mealsObserver = Observer<List<Meal>> { varToObserve ->
+            Timber.d("Meals changed....")
+            mAdapter.notifyDataSetChanged()
+        }
+        val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
+        viewModel.meals.observe(this, mealsObserver)
+
+    }
+
 }

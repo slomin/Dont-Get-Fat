@@ -29,6 +29,10 @@ class DgfRepository {
         Timber.d("DgfRepository INIT")
     }
 
+    fun getMealsByDayId(id: Long): LiveData<List<Meal>> {
+        Timber.d("!!!!")
+        return mDb.mealsDao().getAllMealsForGivenDay(id)!!
+    }
     fun addMeal(calories: Int) {
         doAsync {
             mIsDbBeingAccessed.postValue(true)
@@ -44,7 +48,9 @@ class DgfRepository {
             val newMealId = mDb.mealsDao().insertMeal(newMeal)
             Timber.d("meal ID: $newMealId")
             mIsDbBeingAccessed.postValue(false)
+
         }
+
     }
 
     fun addExercise(calories: Int) {
@@ -68,11 +74,11 @@ class DgfRepository {
         var caloriesConsumed = 0
         doAsync {
             val meals = mDb.mealsDao().getAllMealsForGivenDay(1)
-            for (meal in meals!!) {
-                caloriesConsumed += meal.calories
-                Timber.d("Meal ID: ${meal.id}")
-                Timber.d("Meal calories: ${meal.calories}")
-            }
+//            for (meal in meals!!) {
+//                caloriesConsumed += meal.calories
+//                Timber.d("Meal ID: ${meal.id}")
+//                Timber.d("Meal calories: ${meal.calories}")
+//            }
             uiThread {
 
                 Timber.d("Calories consumed: $caloriesConsumed")
