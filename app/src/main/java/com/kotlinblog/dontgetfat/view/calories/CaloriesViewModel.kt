@@ -3,7 +3,7 @@ package com.kotlinblog.dontgetfat.view.calories
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
-import com.kotlinblog.dontgetfat.DgfApp
+import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.DgfRepositoryObserver
 import com.kotlinblog.dontgetfat.data.model.Meal
@@ -19,7 +19,7 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
     val meals: LiveData<List<Meal>> get() = mMeals
 
     init {
-        DgfApp.component.inject(this)
+        App.component.inject(this)
         mMeals = mRepository.getMealsByDayId(1)
         mObserver = Observer { isDbBeingAccessed ->
             Timber.d("isDbBeingAccessed changed: $isDbBeingAccessed")

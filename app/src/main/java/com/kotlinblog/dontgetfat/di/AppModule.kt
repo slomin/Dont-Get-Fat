@@ -3,7 +3,7 @@ package com.kotlinblog.dontgetfat.di
 import android.app.Application
 import android.arch.persistence.room.Room
 import android.content.Context
-import com.kotlinblog.dontgetfat.DgfApp
+import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.database.DgfDatabase
 import dagger.Module
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class AppModule constructor(private val context: Context) {
     @Provides
     @Singleton
-    fun providesApplication(application: DgfApp): Application {
+    fun providesApplication(application: App): Application {
         return application
     }
 

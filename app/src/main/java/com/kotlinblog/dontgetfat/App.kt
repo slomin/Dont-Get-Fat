@@ -7,7 +7,7 @@ import com.kotlinblog.dontgetfat.di.DaggerAppComponent
 import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
-class DgfApp : Application() {
+class App : Application() {
 
     companion object {
         private lateinit var mComponent: AppComponent

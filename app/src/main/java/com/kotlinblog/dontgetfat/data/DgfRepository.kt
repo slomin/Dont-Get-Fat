@@ -3,7 +3,7 @@ package com.kotlinblog.dontgetfat.data
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.text.format.DateUtils
-import com.kotlinblog.dontgetfat.DgfApp
+import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.database.DgfDatabase
 import com.kotlinblog.dontgetfat.data.model.Day
 import com.kotlinblog.dontgetfat.data.model.Exercise
@@ -23,7 +23,7 @@ class DgfRepository {
     val isDbBeingAccessed: LiveData<Boolean> get() = mIsDbBeingAccessed
 
     init {
-        DgfApp.component.inject(this)
+        App.component.inject(this)
         mIsDbBeingAccessed = MutableLiveData()
         mIsDbBeingAccessed.postValue(false)
         Timber.d("DgfRepository INIT")
