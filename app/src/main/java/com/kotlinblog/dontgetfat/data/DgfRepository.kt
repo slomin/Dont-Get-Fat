@@ -9,7 +9,6 @@ import com.kotlinblog.dontgetfat.data.model.Day
 import com.kotlinblog.dontgetfat.data.model.Exercise
 import com.kotlinblog.dontgetfat.data.model.Meal
 import com.kotlinblog.dontgetfat.temp.Constants
-import kotlinx.coroutines.experimental.launch
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import timber.log.Timber
@@ -35,7 +34,7 @@ class DgfRepository {
         return mDb.mealsDao().getAllMealsForGivenDay(id)!!
     }
     fun addMeal(calories: Int) {
-        launch {
+        doAsync {
             mIsDbBeingAccessed.postValue(true)
             val currentDate = Date()
             var lastRecordedDay = mDb.daysDao().lastDay
