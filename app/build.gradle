@@ -71,6 +71,10 @@ dependencies {
     //WilliamChart
     implementation "com.diogobernardino:williamchart:$williamchart_version"
 
+    //Rx
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
     //Leak Canary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
