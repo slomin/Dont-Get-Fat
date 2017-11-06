@@ -71,6 +71,10 @@ dependencies {
     //WilliamChart
     implementation "com.diogobernardino:williamchart:$williamchart_version"
 
+    //Leak Canary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$leak_canary_version"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$leak_canary_version"
+
     //Tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

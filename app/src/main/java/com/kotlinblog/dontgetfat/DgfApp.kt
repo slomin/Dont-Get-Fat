@@ -4,6 +4,7 @@ import android.app.Application
 import com.kotlinblog.dontgetfat.di.AppComponent
 import com.kotlinblog.dontgetfat.di.AppModule
 import com.kotlinblog.dontgetfat.di.DaggerAppComponent
+import com.squareup.leakcanary.LeakCanary
 import timber.log.Timber
 
 class DgfApp : Application() {
@@ -17,6 +18,7 @@ class DgfApp : Application() {
         super.onCreate()
         initializeDagger()
         initializeTimber()
+        initializeLeakCanary()
     }
 
     private fun initializeDagger() {
@@ -34,5 +36,12 @@ class DgfApp : Application() {
                 }
             })
         }
+    }
+
+    private fun initializeLeakCanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return
+        }
+        LeakCanary.install(this)
     }
 }
