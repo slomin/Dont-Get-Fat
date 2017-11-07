@@ -76,7 +76,7 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
                 for (meal in meals) {
                     totalCalories += meal.calories
                 }
-                setCurrentConsumption(totalCalories)
+                setConsumptionViews(totalCalories)
             }
             mAdapter.notifyDataSetChanged()
         }
@@ -85,9 +85,11 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
 
     }
 
-    //TODO implement properly
-    private fun setCurrentConsumption(calories: Int) {
-        tvCaloriesConsumed.text = calories.toString() + "/${Constants.CALORIES_ALLOWED}"
+    private fun setConsumptionViews(calories: Int) {
+        tvCaloriesConsumed.text = getString(R.string.current_consumption, calories, Constants.CALORIES_ALLOWED)
+        val caloriesLeft = Constants.CALORIES_ALLOWED - calories
+        tvCaloriesLeft.text = caloriesLeft.toString()
+        tvCaloriesBurned.text = "not yet implemented"
     }
 
 }
