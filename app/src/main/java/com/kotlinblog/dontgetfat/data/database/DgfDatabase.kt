@@ -7,15 +7,16 @@ import com.kotlinblog.dontgetfat.data.database.dao.ActivitiesDao
 import com.kotlinblog.dontgetfat.data.database.dao.DaysDao
 import com.kotlinblog.dontgetfat.data.database.dao.MealsDao
 import com.kotlinblog.dontgetfat.data.database.dbutils.DbDateConverter
-import com.kotlinblog.dontgetfat.data.model.Exercise
 import com.kotlinblog.dontgetfat.data.model.Day
+import com.kotlinblog.dontgetfat.data.model.Exercise
 import com.kotlinblog.dontgetfat.data.model.Meal
 
 @Database(entities = arrayOf(
         Day::class,
         Meal::class,
         Exercise::class),
-        version = 1)
+        version = 1,
+        exportSchema = true)
 @TypeConverters(DbDateConverter::class)
 abstract class DgfDatabase : RoomDatabase() {
     abstract fun daysDao(): DaysDao
