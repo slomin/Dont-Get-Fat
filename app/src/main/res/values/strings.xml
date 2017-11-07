@@ -1,7 +1,12 @@
 <resources>
-    <!--<string name="app_name">Don\'t Get Fat</string>-->
     <string name="title_left_fragment">Calories</string>
     <string name="title_middle_fragment">Weight</string>
     <string name="title_right_fragment">History</string>
     <string name="kcal">kcal</string>
+    <string name="meal_number">Meal #%1$d</string>
+    <string name="calories">%1$d kcal</string>
+    <string name="current_consumption">%1$d of %2$d</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+
 </resources>

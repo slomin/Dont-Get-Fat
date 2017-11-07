@@ -8,6 +8,8 @@ import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.DgfRepositoryObserver
 import com.kotlinblog.dontgetfat.data.model.Meal
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
@@ -63,6 +65,18 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
             return it.size
         }
         return 0
+    }
+
+    fun getMealTime(date: Date): String {
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(date)
+    }
+
+    fun deleteMeal(meal: Meal) {
+        Timber.d("Removing meal: $meal")
+    }
+
+    fun editMeal(meal: Meal) {
+        Timber.d("Editing meal: $meal")
     }
 
 }

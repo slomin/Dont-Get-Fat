@@ -3,54 +3,73 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context="com.kotlinblog.dontgetfat.view.calories.CaloriesFragment"
-                                             tools:layout_editor_absoluteX="0dp"
-                                             tools:layout_editor_absoluteY="81dp">
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnAddCalories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_white_24dp"
-        />
+                                             tools:context="com.kotlinblog.dontgetfat.view.calories.CaloriesFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvCaloriesConsumedLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Calories consumed"
+        android:text="Calories consumed:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/tvCaloriesConsumed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="1250/2000"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCaloriesConsumedLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvCaloriesConsumedLabel"/>
+
+    <TextView
+        android:id="@+id/tvCaloriesLeftLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Calories left:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvCaloriesConsumedLabel"/>
+
+    <TextView
+        android:id="@+id/tvCaloriesLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="750"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCaloriesLeftLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvCaloriesConsumed"/>
+
+    <TextView
+        android:id="@+id/tvCaloriesBurnedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Calories burned:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCaloriesLeftLabel"/>
+
+    <TextView
+        android:id="@+id/tvCaloriesBurned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="235"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCaloriesBurnedLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvCaloriesLeft"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
-        android:layout_height="446dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:clipToPadding="false"
         android:horizontalSpacing="5dp"
@@ -66,10 +85,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCaloriesConsumed"
+        app:layout_constraintTop_toBottomOf="@+id/tvCaloriesBurned"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnAddCalories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        />
 
 </android.support.constraint.ConstraintLayout>
