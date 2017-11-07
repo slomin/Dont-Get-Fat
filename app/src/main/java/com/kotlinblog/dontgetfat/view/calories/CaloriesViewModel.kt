@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.DgfRepositoryObserver
-import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*

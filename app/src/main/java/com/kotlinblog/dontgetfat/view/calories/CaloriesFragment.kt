@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.codetroopers.betterpickers.numberpicker.NumberPickerBuilder
 import com.codetroopers.betterpickers.numberpicker.NumberPickerDialogFragment
 import com.kotlinblog.dontgetfat.R
-import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 import com.kotlinblog.dontgetfat.temp.Constants
 import kotlinx.android.synthetic.main.fragment_calories.*
 import timber.log.Timber

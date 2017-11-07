@@ -6,10 +6,9 @@ import android.arch.persistence.room.TypeConverters
 import com.kotlinblog.dontgetfat.data.database.dao.ActivitiesDao
 import com.kotlinblog.dontgetfat.data.database.dao.DaysDao
 import com.kotlinblog.dontgetfat.data.database.dao.MealsDao
-import com.kotlinblog.dontgetfat.data.database.dbutils.DbDateConverter
-import com.kotlinblog.dontgetfat.data.model.Day
-import com.kotlinblog.dontgetfat.data.model.Exercise
-import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.data.database.entity.Day
+import com.kotlinblog.dontgetfat.data.database.entity.Exercise
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 
 @Database(entities = arrayOf(
         Day::class,
@@ -17,7 +16,7 @@ import com.kotlinblog.dontgetfat.data.model.Meal
         Exercise::class),
         version = 1,
         exportSchema = true)
-@TypeConverters(DbDateConverter::class)
+@TypeConverters(DateConverter::class)
 abstract class DgfDatabase : RoomDatabase() {
     abstract fun daysDao(): DaysDao
     abstract fun mealsDao(): MealsDao

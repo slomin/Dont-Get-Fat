@@ -1,4 +1,4 @@
-package com.kotlinblog.dontgetfat.data.model
+package com.kotlinblog.dontgetfat.data.database.entity
 
 import android.arch.persistence.room.*
 import java.util.*
@@ -6,7 +6,7 @@ import java.util.*
 /**
  * TODO: Add a class header comment!
  */
-@Entity(tableName = "exercises",
+@Entity(tableName = "meals",
         indices = arrayOf(Index(value = "day_id")),
         foreignKeys = arrayOf(
                 ForeignKey(entity = Day::class,
@@ -14,7 +14,7 @@ import java.util.*
                         childColumns = arrayOf("day_id"),
                         onUpdate = ForeignKey.CASCADE,
                         onDelete = ForeignKey.CASCADE)))
-data class Exercise(
+data class Meal(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
         val id: Long = 0,

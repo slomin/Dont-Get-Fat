@@ -5,9 +5,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.text.format.DateUtils
 import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.database.DgfDatabase
-import com.kotlinblog.dontgetfat.data.model.Day
-import com.kotlinblog.dontgetfat.data.model.Exercise
-import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.data.database.entity.Day
+import com.kotlinblog.dontgetfat.data.database.entity.Exercise
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 import com.kotlinblog.dontgetfat.temp.Constants
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
