@@ -27,5 +27,4 @@ data class Meal(
 
         @ColumnInfo(name = "calories")
         val calories: Int
-
 )

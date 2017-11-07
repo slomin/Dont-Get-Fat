@@ -19,5 +19,4 @@ data class Day(
 
         @ColumnInfo(name = "calories_allowed")
         val caloriesAllowed: Int
-
 )

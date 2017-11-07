@@ -53,7 +53,7 @@ class DgfRepository {
 
     }
 
-    fun addExercise(calories: Int) {
+    fun addExercise(calories: Int, isFromSteps: Boolean = false) {
         doAsync {
             val currentDate = Date()
             var lastRecordedDay = mDb.daysDao().lastDay
@@ -63,7 +63,7 @@ class DgfRepository {
                 lastRecordedDay = Day(date = currentDate, caloriesAllowed = Constants.CALORIES_ALLOWED)
                 lastRecordedDayId = mDb.daysDao().insertDay(lastRecordedDay) //inserting Day and storing it's ID
             }
-            val newExercise = Exercise(dayId = lastRecordedDayId!!, date = currentDate, calories = calories)
+            val newExercise = Exercise(dayId = lastRecordedDayId!!, date = currentDate, calories = calories, isFromSteps = isFromSteps)
             val newExerciseId = mDb.activitiesDao().insertActivity(newExercise)
             Timber.d("exercise ID: $newExerciseId")
 

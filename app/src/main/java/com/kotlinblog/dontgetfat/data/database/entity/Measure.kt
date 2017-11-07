@@ -28,7 +28,6 @@ data class Measure(
         @ColumnInfo(name = "weight") // Weight in grams
         val weight: Int,
 
-        @ColumnInfo(name = "waist_size") //Waist size in cm
+        @ColumnInfo(name = "waist_size") //Waist size in mm
         val waistSize: Int
-
 )

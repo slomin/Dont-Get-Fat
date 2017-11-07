@@ -22,10 +22,12 @@ data class Exercise(
         @ColumnInfo(name = "day_id")
         val dayId: Long,
 
+        @ColumnInfo(name = "is_from_steps")
+        val isFromSteps: Boolean,
+
         @ColumnInfo(name = "date")
         val date: Date,
 
         @ColumnInfo(name = "calories")
         val calories: Int
-
 )
