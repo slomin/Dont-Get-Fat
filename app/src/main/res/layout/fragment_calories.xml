@@ -61,7 +61,7 @@
         android:id="@+id/tvCaloriesBurned"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="235"
+        android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvCaloriesBurnedLabel"
         app:layout_constraintStart_toStartOf="@+id/tvCaloriesLeft"/>

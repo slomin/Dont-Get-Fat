@@ -89,7 +89,6 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
         tvCaloriesConsumed.text = getString(R.string.current_consumption, calories, Constants.CALORIES_ALLOWED)
         val caloriesLeft = Constants.CALORIES_ALLOWED - calories
         tvCaloriesLeft.text = caloriesLeft.toString()
-        tvCaloriesBurned.text = "not yet implemented"
     }
 
 }

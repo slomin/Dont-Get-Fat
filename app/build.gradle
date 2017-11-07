@@ -19,7 +19,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            resValue "string", "app_name", "Don't Get Fat"
+            manifestPlaceholders = [appName: "Don\'t get fat"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
@@ -27,7 +27,7 @@ android {
         debug {
             versionNameSuffix '-DEBUG'
             applicationIdSuffix ".debug"
-            resValue "string", "app_name", "DGFDebug"
+            manifestPlaceholders = [appName: "DGFDebug"]
         }
     }
 
