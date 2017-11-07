@@ -33,7 +33,7 @@ class CaloriesFragment : Fragment(), NumberPickerDialogFragment.NumberPickerDial
         super.onViewCreated(view, savedInstanceState)
 
         mViewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
-        mAdapter = CaloriesAdapter(mViewModel)
+        mAdapter = CaloriesAdapter(mViewModel, context)
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)

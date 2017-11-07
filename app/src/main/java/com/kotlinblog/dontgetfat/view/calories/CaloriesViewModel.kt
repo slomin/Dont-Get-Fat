@@ -8,6 +8,7 @@ import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.DgfRepositoryObserver
 import com.kotlinblog.dontgetfat.data.model.Meal
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
@@ -63,6 +64,22 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
             return it.size
         }
         return 0
+    }
+
+    fun getMealTime(date: Date): String {
+        val cal = Calendar.getInstance()
+        cal.time = date
+        val hours = cal.get(Calendar.HOUR_OF_DAY)
+        val minutes = cal.get(Calendar.MINUTE)
+        return "$hours:$minutes"
+    }
+
+    fun deleteMeal(meal: Meal) {
+        Timber.d("Removing meal: ${meal.toString()}")
+    }
+
+    fun editMeal(meal: Meal) {
+        Timber.d("Editing meal: ${meal.toString()}")
     }
 
 }
