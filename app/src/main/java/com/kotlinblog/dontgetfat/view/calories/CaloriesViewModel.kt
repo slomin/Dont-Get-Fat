@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.DgfRepository
 import com.kotlinblog.dontgetfat.data.DgfRepositoryObserver
+import com.kotlinblog.dontgetfat.data.database.entity.DayWithMeals
 import com.kotlinblog.dontgetfat.data.database.entity.Meal
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -17,16 +18,19 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
     @Inject lateinit var mRepository: DgfRepository
     private val mObserver: Observer<Boolean>
 
-    private var mMeals: LiveData<List<Meal>>
-    val meals: LiveData<List<Meal>> get() = mMeals
+    private var mDayWithMeals: LiveData<DayWithMeals>
+    val dayWithMeals: LiveData<DayWithMeals> get() = mDayWithMeals
+
+    var mMealToEdit: Meal? = null
 
     init {
         App.component.inject(this)
-        mMeals = mRepository.getMealsByDayId(1)
+        mDayWithMeals = mRepository.getLastDayWithMeals()
         mObserver = Observer { isDbBeingAccessed ->
             Timber.d("isDbBeingAccessed changed: $isDbBeingAccessed")
         }
         observeRepo()
+        mRepository.getLastDayWithMeals()
     }
 
     override fun observeRepo() {
@@ -49,34 +53,40 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
     }
 
 
+    fun getMealTime(date: Date): String {
+        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(date)
+    }
+
+    fun deleteMeal(meal: Meal) {
+        mRepository.deleteMeal(meal)
+        Timber.d("Removing meal: $meal")
+    }
+
+    fun editMeal(calories: Int) {
+        mMealToEdit?.let {
+            it.calories = calories
+            mRepository.updateMeal(it)
+            Timber.d("Editing meal: $it")
+        }
+        mMealToEdit = null
+    }
+
     /**
      * Adapter callbacks
      */
     fun getMealAt(position: Int): Meal? {
         return if (position < getMealListSize()) {
-            mMeals.value?.get(position)
+            dayWithMeals.value?.meals?.get(position)
         } else {
             null
         }
     }
 
     fun getMealListSize(): Int {
-        mMeals.value?.let {
+        dayWithMeals.value?.meals?.let{
             return it.size
         }
         return 0
-    }
-
-    fun getMealTime(date: Date): String {
-        return SimpleDateFormat("HH:mm", Locale.getDefault()).format(date)
-    }
-
-    fun deleteMeal(meal: Meal) {
-        Timber.d("Removing meal: $meal")
-    }
-
-    fun editMeal(meal: Meal) {
-        Timber.d("Editing meal: $meal")
     }
 
 }

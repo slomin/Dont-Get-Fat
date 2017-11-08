@@ -27,7 +27,7 @@ android {
             minifyEnabled true
             manifestPlaceholders = [appName: "Don\'t get fat"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "boolean", "EXMPORT_ROOM_SCHEMA", "true"
+            buildConfigField "boolean", "EXPORT_ROOM_SCHEMA", "true"
 
         }
 
@@ -35,7 +35,7 @@ android {
             versionNameSuffix '-DEBUG'
             applicationIdSuffix ".debug"
             manifestPlaceholders = [appName: "DGFDebug"]
-            buildConfigField "boolean", "EXMPORT_ROOM_SCHEMA", "false"
+            buildConfigField "boolean", "EXPORT_ROOM_SCHEMA", "false"
         }
     }
 

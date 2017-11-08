@@ -1,19 +1,14 @@
 package com.kotlinblog.dontgetfat.data.database.entity
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import java.util.*
 
 /**
  * TODO: Add a class header comment!
  */
-@Entity(tableName = "meals",
-        indices = arrayOf(Index(value = "day_id")),
-        foreignKeys = arrayOf(
-                ForeignKey(entity = Day::class,
-                        parentColumns = arrayOf("id"),
-                        childColumns = arrayOf("day_id"),
-                        onUpdate = ForeignKey.CASCADE,
-                        onDelete = ForeignKey.CASCADE)))
+@Entity(tableName = "meals")
 data class Meal(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
@@ -26,5 +21,5 @@ data class Meal(
         val date: Date,
 
         @ColumnInfo(name = "calories")
-        val calories: Int
+        var calories: Int
 )
