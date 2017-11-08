@@ -1,4 +1,4 @@
-package com.kotlinblog.dontgetfat.data.model
+package com.kotlinblog.dontgetfat.data.database.entity
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -8,16 +8,18 @@ import java.util.*
 /**
  * TODO: Add a class header comment!
  */
-@Entity(tableName = "days")
-data class Day(
+@Entity(tableName = "meals")
+data class Meal(
         @PrimaryKey(autoGenerate = true)
         @ColumnInfo(name = "id")
-        var id: Long = 0,
+        val id: Long = 0,
+
+        @ColumnInfo(name = "day_id")
+        val dayId: Long,
 
         @ColumnInfo(name = "date")
         val date: Date,
 
-        @ColumnInfo(name = "calories_allowed")
-        val caloriesAllowed: Int
-
+        @ColumnInfo(name = "calories")
+        var calories: Int
 )

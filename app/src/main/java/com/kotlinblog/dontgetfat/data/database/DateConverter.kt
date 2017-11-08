@@ -1,4 +1,4 @@
-package com.kotlinblog.dontgetfat.data.database.dbutils
+package com.kotlinblog.dontgetfat.data.database
 
 import android.arch.persistence.room.TypeConverter
 import java.util.*
@@ -6,7 +6,7 @@ import java.util.*
 /**
  * TODO: Add a class header comment!
  */
-object DbDateConverter {
+object DateConverter {
     @TypeConverter
     @JvmStatic
     fun fromTimestamp(value: Long?): Date? = if (null == value) null else Date(value)

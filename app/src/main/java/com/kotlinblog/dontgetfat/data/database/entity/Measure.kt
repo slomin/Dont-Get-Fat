@@ -1,4 +1,4 @@
-package com.kotlinblog.dontgetfat.data.model
+package com.kotlinblog.dontgetfat.data.database.entity
 
 import android.arch.persistence.room.*
 import java.util.*
@@ -28,7 +28,6 @@ data class Measure(
         @ColumnInfo(name = "weight") // Weight in grams
         val weight: Int,
 
-        @ColumnInfo(name = "waist_size") //Waist size in cm
+        @ColumnInfo(name = "waist_size") //Waist size in mm
         val waistSize: Int
-
 )

@@ -5,9 +5,10 @@ import android.arch.lifecycle.MutableLiveData
 import android.text.format.DateUtils
 import com.kotlinblog.dontgetfat.App
 import com.kotlinblog.dontgetfat.data.database.DgfDatabase
-import com.kotlinblog.dontgetfat.data.model.Day
-import com.kotlinblog.dontgetfat.data.model.Exercise
-import com.kotlinblog.dontgetfat.data.model.Meal
+import com.kotlinblog.dontgetfat.data.database.entity.Day
+import com.kotlinblog.dontgetfat.data.database.entity.DayWithMeals
+import com.kotlinblog.dontgetfat.data.database.entity.Exercise
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 import com.kotlinblog.dontgetfat.temp.Constants
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -33,6 +34,7 @@ class DgfRepository {
         Timber.d("!!!!")
         return mDb.mealsDao().getAllMealsForGivenDay(id)!!
     }
+
     fun addMeal(calories: Int) {
         doAsync {
             mIsDbBeingAccessed.postValue(true)
@@ -53,7 +55,15 @@ class DgfRepository {
 
     }
 
-    fun addExercise(calories: Int) {
+    fun deleteMeal(meal: Meal) {
+        doAsync { mDb.mealsDao().deleteMeal(meal) }
+    }
+
+    fun updateMeal(meal: Meal) {
+        doAsync { mDb.mealsDao().updateMeal(meal) }
+    }
+
+    fun addExercise(calories: Int, isFromSteps: Boolean = false) {
         doAsync {
             val currentDate = Date()
             var lastRecordedDay = mDb.daysDao().lastDay
@@ -63,7 +73,7 @@ class DgfRepository {
                 lastRecordedDay = Day(date = currentDate, caloriesAllowed = Constants.CALORIES_ALLOWED)
                 lastRecordedDayId = mDb.daysDao().insertDay(lastRecordedDay) //inserting Day and storing it's ID
             }
-            val newExercise = Exercise(dayId = lastRecordedDayId!!, date = currentDate, calories = calories)
+            val newExercise = Exercise(dayId = lastRecordedDayId!!, date = currentDate, calories = calories, isFromSteps = isFromSteps)
             val newExerciseId = mDb.activitiesDao().insertActivity(newExercise)
             Timber.d("exercise ID: $newExerciseId")
 
@@ -87,27 +97,8 @@ class DgfRepository {
         return caloriesConsumed
     }
 
-//    fun addMeal2(calories: Int) {
-//        doAsync {
-//            val lastDay = mDb.daysDao().lastDay
-//            Timber.d("last day id: " + lastDay?.id)
-//            Timber.d("last day date: " + lastDay?.date)
-//            val currentDate = Date()
-//            if (lastDay == null || !DateUtils.isToday(lastDay.date.time)) {
-//                val newDay = Day(date = currentDate)
-//                val newDayId = mDb.daysDao().insertDay(newDay) //inserting Day and storing it's ID
-//                val newMeal = Meal(dayId = newDayId, date = currentDate, calories =  calories)
-//                val newMealId = mDb.mealsDao().insertMeal(newMeal)
-//                Timber.d("New Meal ID: " + newMealId)
-//            } else {
-//                val newMeal = Meal(dayId = lastDay.id, date = currentDate, calories = calories)
-//                val newMealId = mDb.mealsDao().insertMeal(newMeal)
-//                Timber.d("New Meal ID: " + newMealId)
-//            }
-//            val lastMeal = mDb.mealsDao().lastMeal
-//            Timber.d("last meal...")
-//        }
-//    }
-
+    fun getLastDayWithMeals(): LiveData<DayWithMeals> {
+        return mDb.dayWithMealsDao().lastDayWithMealsLiveData
+    }
 
 }

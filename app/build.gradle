@@ -14,20 +14,28 @@ android {
         versionName "0.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled true
-            resValue "string", "app_name", "Don't Get Fat"
+            manifestPlaceholders = [appName: "Don\'t get fat"]
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "boolean", "EXPORT_ROOM_SCHEMA", "true"
 
         }
 
         debug {
             versionNameSuffix '-DEBUG'
             applicationIdSuffix ".debug"
-            resValue "string", "app_name", "DGFDebug"
+            manifestPlaceholders = [appName: "DGFDebug"]
+            buildConfigField "boolean", "EXPORT_ROOM_SCHEMA", "false"
         }
     }
 

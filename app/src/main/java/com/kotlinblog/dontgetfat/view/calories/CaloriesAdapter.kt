@@ -9,8 +9,11 @@ import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import com.kotlinblog.dontgetfat.R
+import com.kotlinblog.dontgetfat.data.database.entity.Meal
 
-class CaloriesAdapter(private var viewModel: CaloriesViewModel, private val context: Context)
+class CaloriesAdapter(private var viewModel: CaloriesViewModel,
+                      private val context: Context,
+                      private val caloriesFragmentOnClickListener: CaloriesAdapterOnClickListener)
     : RecyclerView.Adapter<CaloriesAdapter.MealsViewHolder>() {
 
     override fun onBindViewHolder(holder: MealsViewHolder, position: Int) {
@@ -24,7 +27,7 @@ class CaloriesAdapter(private var viewModel: CaloriesViewModel, private val cont
                     popupMenu.inflate(R.menu.fragment_calories_popup_menu)
                     popupMenu.setOnMenuItemClickListener {
                         when (it.itemId) {
-                            R.id.item_edit -> viewModel.editMeal(meal)
+                            R.id.item_edit -> caloriesFragmentOnClickListener.editMealPicker(meal)
                             R.id.item_delete -> viewModel.deleteMeal(meal)
                         }
                         true
@@ -48,6 +51,10 @@ class CaloriesAdapter(private var viewModel: CaloriesViewModel, private val cont
         val mealTime by lazy { view.findViewById<TextView>(R.id.tvMealTime) as TextView }
         val mealCalories by lazy { view.findViewById<TextView>(R.id.tvMealCalories) as TextView }
         val menuButton by lazy { view.findViewById<ImageButton>(R.id.btnItemMenu) as ImageButton }
+    }
+
+    interface CaloriesAdapterOnClickListener {
+        fun editMealPicker(meal: Meal)
     }
 
 }

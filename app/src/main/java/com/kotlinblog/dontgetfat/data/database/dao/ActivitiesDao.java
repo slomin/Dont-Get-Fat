@@ -3,7 +3,7 @@ package com.kotlinblog.dontgetfat.data.database.dao;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 
-import com.kotlinblog.dontgetfat.data.model.Exercise;
+import com.kotlinblog.dontgetfat.data.database.entity.Exercise;
 
 /**
  * TODO: Add a class header comment!
