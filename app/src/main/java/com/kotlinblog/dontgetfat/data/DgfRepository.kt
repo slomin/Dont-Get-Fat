@@ -40,10 +40,15 @@ class DgfRepository {
                 var lastRecordedDayId = lastRecordedDay?.id
                 //If it is first record or first record on a given day - create and store new Day
                 if (lastRecordedDay == null || !DateUtils.isToday(lastRecordedDay.date.time)) {
-                    lastRecordedDay = Day(date = currentDate, caloriesAllowed = Constants.CALORIES_ALLOWED)
+                    lastRecordedDay = Day(
+                            date = currentDate,
+                            caloriesAllowed = Constants.CALORIES_ALLOWED)
                     lastRecordedDayId = mDb.daysDao().insertDay(lastRecordedDay) //inserting Day and storing it's ID
                 }
-                val newMeal = Meal(dayId = lastRecordedDayId!!, date = currentDate, calories = calories)
+                val newMeal = Meal(
+                        dayId = lastRecordedDayId!!,
+                        date = currentDate,
+                        calories = calories)
                 val newMealId = mDb.mealsDao().insertMeal(newMeal)
                 Timber.d("meal ID: $newMealId")
                 mIsDbBeingAccessed.postValue(false)
@@ -72,10 +77,16 @@ class DgfRepository {
                 var lastRecordedDayId = lastRecordedDay?.id
                 //If it is first record or first record on a given day - create and store new Day
                 if (lastRecordedDay == null || !DateUtils.isToday(lastRecordedDay.date.time)) {
-                    lastRecordedDay = Day(date = currentDate, caloriesAllowed = Constants.CALORIES_ALLOWED)
+                    lastRecordedDay = Day(
+                            date = currentDate,
+                            caloriesAllowed = Constants.CALORIES_ALLOWED)
                     lastRecordedDayId = mDb.daysDao().insertDay(lastRecordedDay) //inserting Day and storing it's ID
                 }
-                val newExercise = Exercise(dayId = lastRecordedDayId!!, date = currentDate, calories = calories, isFromSteps = isFromSteps)
+                val newExercise = Exercise(
+                        dayId = lastRecordedDayId!!,
+                        date = currentDate,
+                        calories = calories,
+                        isFromSteps = isFromSteps)
                 val newExerciseId = mDb.activitiesDao().insertActivity(newExercise)
                 Timber.d("exercise ID: $newExerciseId")
             }
