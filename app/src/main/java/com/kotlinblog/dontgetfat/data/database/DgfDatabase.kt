@@ -3,6 +3,7 @@ package com.kotlinblog.dontgetfat.data.database
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
+import com.kotlinblog.dontgetfat.BuildConfig
 import com.kotlinblog.dontgetfat.data.database.dao.ActivitiesDao
 import com.kotlinblog.dontgetfat.data.database.dao.DaysDao
 import com.kotlinblog.dontgetfat.data.database.dao.MealsDao
@@ -15,7 +16,7 @@ import com.kotlinblog.dontgetfat.data.database.entity.Meal
         Meal::class,
         Exercise::class),
         version = 1,
-        exportSchema = true)
+        exportSchema = BuildConfig.EXMPORT_ROOM_SCHEMA)
 @TypeConverters(DateConverter::class)
 abstract class DgfDatabase : RoomDatabase() {
     abstract fun daysDao(): DaysDao
