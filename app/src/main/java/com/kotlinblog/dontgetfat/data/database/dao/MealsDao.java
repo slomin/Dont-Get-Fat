@@ -27,7 +27,7 @@ public interface MealsDao {
     @Update
     void updateMeal(Meal meal);
 
-    @Query("SELECT * FROM meals ORDER BY id DESC LIMIT 1;")
+    @Query("SELECT * FROM meals ORDER BY id DESC LIMIT 1")
     @Nullable
     Meal getLastMeal();
 
