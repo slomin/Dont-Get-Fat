@@ -17,6 +17,7 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
+
 class DgfRepository {
 
     @Inject lateinit var mDb: DgfDatabase
@@ -94,7 +95,28 @@ class DgfRepository {
     }
 
     fun getLastDayWithMeals(): LiveData<DayWithMeals> {
-        return mDb.dayWithMealsDao().lastDayWithMealsLiveData
+        val now = Date()
+        return mDb.dayWithMealsDao().getCurrentDayWithMeals(getStartOfDay(now), getEndOfDay(now))
+    }
+
+    private fun getStartOfDay(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        return calendar.time
+    }
+
+    private fun getEndOfDay(date: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = date
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return calendar.time
     }
 
 }

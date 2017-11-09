@@ -6,6 +6,8 @@ import android.arch.persistence.room.Query;
 
 import com.kotlinblog.dontgetfat.data.database.entity.DayWithMeals;
 
+import java.util.Date;
+
 /**
  * TODO: Add a class header comment!
  */
@@ -16,4 +18,7 @@ public interface DayWithMealsDao {
 
     @Query("SELECT * FROM days ORDER BY id DESC LIMIT 1")
     LiveData<DayWithMeals> getLastDayWithMealsLiveData();
+
+    @Query("SELECT * FROM days WHERE date BETWEEN :start and :end")
+    LiveData<DayWithMeals> getCurrentDayWithMeals(Date start, Date end);
 }
