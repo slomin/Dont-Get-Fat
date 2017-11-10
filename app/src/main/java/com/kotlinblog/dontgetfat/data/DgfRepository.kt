@@ -9,6 +9,8 @@ import com.kotlinblog.dontgetfat.data.database.entity.Day
 import com.kotlinblog.dontgetfat.data.database.entity.DayWithMeals
 import com.kotlinblog.dontgetfat.data.database.entity.Exercise
 import com.kotlinblog.dontgetfat.data.database.entity.Meal
+import com.kotlinblog.dontgetfat.extensions.getEndOfDay
+import com.kotlinblog.dontgetfat.extensions.getStartOfDay
 import com.kotlinblog.dontgetfat.temp.Constants
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -96,27 +98,7 @@ class DgfRepository {
 
     fun getLastDayWithMeals(): LiveData<DayWithMeals> {
         val now = Date()
-        return mDb.dayWithMealsDao().getCurrentDayWithMeals(getStartOfDay(now), getEndOfDay(now))
-    }
-
-    private fun getStartOfDay(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar.time
-    }
-
-    private fun getEndOfDay(date: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        calendar.set(Calendar.HOUR_OF_DAY, 23)
-        calendar.set(Calendar.MINUTE, 59)
-        calendar.set(Calendar.SECOND, 59)
-        calendar.set(Calendar.MILLISECOND, 999)
-        return calendar.time
+        return mDb.dayWithMealsDao().getCurrentDayWithMeals(now.getStartOfDay(), now.getEndOfDay())
     }
 
 }
