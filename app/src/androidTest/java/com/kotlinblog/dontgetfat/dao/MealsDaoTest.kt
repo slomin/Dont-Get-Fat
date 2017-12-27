@@ -1,41 +1,16 @@
-package com.kotlinblog.dontgetfat.Dao
+package com.kotlinblog.dontgetfat.dao
 
-import android.arch.persistence.room.Room
-import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.kotlinblog.dontgetfat.data.database.DgfDatabase
 import com.kotlinblog.dontgetfat.data.database.entity.Meal
-import org.junit.After
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.IOException
 import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)
-open class MealsDaoTests {
-
-    private lateinit var dgfDatabase: DgfDatabase
-
-
-    @Before
-    fun initDb() {
-        dgfDatabase = Room.inMemoryDatabaseBuilder(
-                InstrumentationRegistry.getContext(),
-                DgfDatabase::class.java)
-                .build()
-
-    }
-
-
-    @After
-    @Throws(IOException::class)
-    fun closeDb() {
-        dgfDatabase.close()
-    }
+open class MealsDaoTest : AbstractDbTest() {
 
     @Test
     fun insertMealTest() {
@@ -100,4 +75,6 @@ open class MealsDaoTests {
         //Asserting Meal was successfully removed
         assertNull(lastMealFromDbAfterDeleting)
     }
+
+    
 }

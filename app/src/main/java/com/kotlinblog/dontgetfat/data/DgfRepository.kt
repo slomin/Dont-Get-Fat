@@ -9,6 +9,8 @@ import com.kotlinblog.dontgetfat.data.database.entity.Day
 import com.kotlinblog.dontgetfat.data.database.entity.DayWithMeals
 import com.kotlinblog.dontgetfat.data.database.entity.Exercise
 import com.kotlinblog.dontgetfat.data.database.entity.Meal
+import com.kotlinblog.dontgetfat.extensions.getEndOfDay
+import com.kotlinblog.dontgetfat.extensions.getStartOfDay
 import com.kotlinblog.dontgetfat.temp.Constants
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -16,6 +18,7 @@ import org.jetbrains.anko.coroutines.experimental.bg
 import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
+
 
 class DgfRepository {
 
@@ -94,7 +97,8 @@ class DgfRepository {
     }
 
     fun getLastDayWithMeals(): LiveData<DayWithMeals> {
-        return mDb.dayWithMealsDao().lastDayWithMealsLiveData
+        val now = Date()
+        return mDb.dayWithMealsDao().getCurrentDayWithMeals(now.getStartOfDay(), now.getEndOfDay())
     }
 
 }

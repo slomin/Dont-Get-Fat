@@ -25,12 +25,11 @@ class CaloriesViewModel : ViewModel(), DgfRepositoryObserver {
 
     init {
         App.component.inject(this)
-        mDayWithMeals = mRepository.getLastDayWithMeals()
         mObserver = Observer { isDbBeingAccessed ->
             Timber.d("isDbBeingAccessed changed: $isDbBeingAccessed")
         }
         observeRepo()
-        mRepository.getLastDayWithMeals()
+        mDayWithMeals = mRepository.getLastDayWithMeals()
     }
 
     override fun observeRepo() {
