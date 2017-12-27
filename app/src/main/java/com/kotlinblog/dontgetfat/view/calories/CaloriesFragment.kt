@@ -19,27 +19,27 @@ import timber.log.Timber
 import java.math.BigDecimal
 import java.math.BigInteger
 
+private const val NEW_MEAL_DIALOG_REFERENCE = 0
+private const val EDIT_MEAL_DIALOG_REFERENCE = 1
+
 class CaloriesFragment : Fragment(),
         NumberPickerDialogFragment.NumberPickerDialogHandlerV2,
         CaloriesAdapter.CaloriesAdapterOnClickListener {
 
-    private val NEW_MEAL_DIALOG_REFERENCE = 0
-    private val EDIT_MEAL_DIALOG_REFERENCE = 1
-
     private lateinit var mViewModel: CaloriesViewModel
     private lateinit var mAdapter: CaloriesAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?,
+    override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.fragment_calories, container, false)
+        return inflater.inflate(R.layout.fragment_calories, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mViewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
-        mAdapter = CaloriesAdapter(mViewModel, context, this)
+        mViewModel = ViewModelProviders.of(activity!!).get(CaloriesViewModel::class.java)
+        mAdapter = CaloriesAdapter(mViewModel, context!!, this)
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -59,13 +59,12 @@ class CaloriesFragment : Fragment(),
     override fun onDialogNumberSet(reference: Int, calories: BigInteger?, decimal: Double, isNegative: Boolean, fullNumber: BigDecimal?) {
         Timber.d("value set: $calories")
         Timber.d("reference: $reference")
-        val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
         if (calories != null && calories.toInt() != 0) {
             if (reference == NEW_MEAL_DIALOG_REFERENCE) {
-                viewModel.addCalories(calories.toInt())
+                mViewModel.addCalories(calories.toInt())
             } else if (reference == EDIT_MEAL_DIALOG_REFERENCE) {
                 Timber.d("edit meal....")
-                viewModel.editMeal(calories.toInt())
+                mViewModel.editMeal(calories.toInt())
 //                viewModel.editMeal()
             }
         }
@@ -102,8 +101,7 @@ class CaloriesFragment : Fragment(),
             }
             mAdapter.notifyDataSetChanged()
         }
-        val viewModel = ViewModelProviders.of(activity).get(CaloriesViewModel::class.java)
-        viewModel.dayWithMeals.observe(this, mealsObserver)
+        mViewModel.dayWithMeals.observe(this, mealsObserver)
 
     }
 
