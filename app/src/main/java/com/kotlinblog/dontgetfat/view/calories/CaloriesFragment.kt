@@ -19,12 +19,12 @@ import timber.log.Timber
 import java.math.BigDecimal
 import java.math.BigInteger
 
+private const val NEW_MEAL_DIALOG_REFERENCE = 0
+private const val EDIT_MEAL_DIALOG_REFERENCE = 1
+
 class CaloriesFragment : Fragment(),
         NumberPickerDialogFragment.NumberPickerDialogHandlerV2,
         CaloriesAdapter.CaloriesAdapterOnClickListener {
-
-    private val NEW_MEAL_DIALOG_REFERENCE = 0
-    private val EDIT_MEAL_DIALOG_REFERENCE = 1
 
     private lateinit var mViewModel: CaloriesViewModel
     private lateinit var mAdapter: CaloriesAdapter
